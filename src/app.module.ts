@@ -12,6 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { HttpModule } from '@nestjs/axios';
 import { GmailModule } from '@modules/gmail/gmail.module';
 import { CategoryModule } from '@modules/category/category.module';
+import { BalanceModule } from '@modules/balance/balance.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CategoryModule } from '@modules/category/category.module';
     Web2AuthModule,
     HttpModule,
     GmailModule,
+    BalanceModule,
     CategoryModule,
     MongooseModule.forRootAsync({ useClass: MongooseConfigService }),
     JwtModule.register({

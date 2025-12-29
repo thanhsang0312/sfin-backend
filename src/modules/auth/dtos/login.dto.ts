@@ -46,7 +46,7 @@ export class LoginRequest_DataDto extends PartialType(IntersectionType(UserExter
 export class LoginRequestDto {
     @ApiProperty({
         enum: LoginProviderEnum,
-        example: LoginProviderEnum.WEB3
+        example: LoginProviderEnum.WEB2
     })
     @IsEnum(LoginProviderEnum)
     provider: LoginProviderEnum;
@@ -60,19 +60,10 @@ export class LoginRequestDto {
 
     @ApiProperty({
         enum: LoginTypeEnum,
-        example: LoginTypeEnum.WEB3_EVM
+        example: LoginTypeEnum.WEB2_GOOGLE_OAUTH2
     })
     @IsEnum(LoginTypeEnum)
     type: LoginTypeEnum;
-
-    @ApiProperty({
-        type: LoginRequest_DataDto,
-        example: {
-            walletAddress: "0x1234567890123456789012345678901234567890",
-            signature: "0x1234567890123456789012345678901234567890",
-            otp: "123456"
-        }
-    })
     @IsOptional()
     @IsObject()
     @Type(() => LoginRequest_DataDto)

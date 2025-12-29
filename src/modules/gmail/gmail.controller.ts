@@ -22,10 +22,10 @@ export class GmailController {
         return this.gmailService.getListLabels(request)
     }
 
-    @Get('labelStats/:labelId')
-    async getLabelStats(@CurrentUser() request: IAuthPayload, @Param("labelId") labelId: string) {
-        return this.gmailService.getLabelStats(request, labelId)
-    }
+    // @Get('labelStats/:labelId')
+    // async getLabelStats(@CurrentUser() request: IAuthPayload, @Param("labelId") labelId: string) {
+    //     return this.gmailService.getLabelStats(request, labelId)
+    // }
 
     @Get('messagesFromLabel/:labelId')
     async getMessagesFromLabel(@CurrentUser() request: IAuthPayload, @Param("labelId") labelId: string): Promise<ResponseType> {
