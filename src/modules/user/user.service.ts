@@ -84,7 +84,7 @@ export class UserService {
         const normalizedWalletAddress = walletAddress.toLowerCase();
 
         try {
-            const existingUser = await this.userRepository.findOne({ walletAddress: normalizedWalletAddress });
+            const existingUser = await this.userRepository.findOne({ email: email });
 
             if (!existingUser) {
                 const userRefCode = generateRefCode();
@@ -139,7 +139,9 @@ export class UserService {
                 { walletAddress: normalizedWalletAddress },
                 {
                     $inc: { loginTime: 1 },
-                    $set: { lastLoginDate: new Date(), telegramId, isTelegramPremium }
+                    $set: { lastLoginDate: new Date(), telegramId, isTelegramPremium },
+                    googleAccessToken: googleAccessToken,
+                    googleRefreshToken: googleRefreshToken
                 }
             );
 

@@ -1,11 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { env } from '@environments';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  const corsOrigins = process.env.CORS_ORIGINS?.split(',') || [];
 
   const config = new DocumentBuilder()
     .setTitle("SFin Application")
@@ -23,15 +22,11 @@ async function bootstrap() {
     )
     .build();
 
+  // Cấu hình CORS - Development: cho phép tất cả, Production: chỉ origins được cấu hình
   app.enableCors({
-    origin: corsOrigins,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: [
-      'Content-Type',
-      'Authorization',
-      'Accept',
-    ],
+    origin: env.corsConfig.ORIGINS.split(","),
+    credentials: env.corsConfig.CREDENTIALS ? true : false,
+    methods: ["GET", "POST", "DELETE", "PATCH", "PUT"]
   });
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);

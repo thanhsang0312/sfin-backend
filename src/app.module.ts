@@ -13,6 +13,7 @@ import { HttpModule } from '@nestjs/axios';
 import { GmailModule } from '@modules/gmail/gmail.module';
 import { CategoryModule } from '@modules/category/category.module';
 import { BalanceModule } from '@modules/balance/balance.module';
+import { TransactionModule } from '@modules/transaction/transaction.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { BalanceModule } from '@modules/balance/balance.module';
     GmailModule,
     BalanceModule,
     CategoryModule,
+    TransactionModule,
     MongooseModule.forRootAsync({ useClass: MongooseConfigService }),
     JwtModule.register({
       global: true

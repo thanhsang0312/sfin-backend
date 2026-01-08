@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Types } from 'mongoose';
 import { extractBody } from 'src/utils/parse-content-email.util';
 import { GmailRepository } from './repositories/gmail.repository';
+import { env } from '@environments';
 
 @Injectable()
 export class GmailService {
@@ -84,7 +85,7 @@ export class GmailService {
             const { id: userId } = request
             const { googleAccessToken } = await this.getGoogleAccessToken(userId)
             const { data } = await axios.get(
-                `https://gmail.googleapis.com/gmail/v1/users/me/messages?labelIds=${labelId}`,
+                `${env.gmailApi.ENDPOINT}/gmail/v1/users/me/messages?labelIds=${labelId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${googleAccessToken}`,

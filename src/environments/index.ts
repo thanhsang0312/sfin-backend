@@ -275,5 +275,8 @@ export const env = {
         URI: APTOS_SIGNIN_URI,
         CHAIN_ID: APTOS_SIGNIN_CHAIN_ID,
         VERSION: APTOS_SIGNIN_VERSION
+    },
+    gmailApi: {
+        ENDPOINT: process.env.GOOGLE_GMAIL_ENDPOINT
     }
 } as const;
